@@ -31,8 +31,10 @@ class Command: public Shell
 
 	    for (int i=0; i<parsed.size(); i++)
 	    {
-		
-	        arg[i] = const_cast <char*> ((parsed[i]).c_str());
+		if (parsed[i] == "#")
+		    arg[i] = NULL;
+		else	
+	            arg[i] = const_cast <char*> ((parsed[i]).c_str());
 	    }
 
 	    arg[parsed.size()] = NULL;

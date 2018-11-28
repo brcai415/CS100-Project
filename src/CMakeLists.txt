@@ -16,9 +16,7 @@ ADD_EXECUTABLE(rshell
     main.cpp
     shell.cpp
     and.cpp
-    connector.cpp
     or.cpp
-    parser.cpp
     semi.cpp
     end.cpp
 )

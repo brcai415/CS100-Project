@@ -36,16 +36,19 @@ Shell::Shell(){};
 
 vector<string> Shell::parsing(string toParse)
 {
+    cout << "THE STRING: " << toParse << endl;
     vector<string> parsed;
     typedef boost::tokenizer< boost::char_separator<char> > Tok;
-    boost::char_separator<char> conn(" ");
+    boost::char_separator<char> conn(" ","#");
     Tok connector(toParse, conn);
 
     for (Tok::iterator tok_iter = connector.begin(); tok_iter != connector.end(); tok_iter++)
     {
 	if(tok_iter == connector.end())
 	    break;
-	if(*tok_iter != " ")
+	if(*tok_iter == "#")
+	    parsed.push_back("#");
+	else if(*tok_iter != " ")
 	    parsed.push_back(*tok_iter);
     }
 	for(int i=0; i<parsed.size(); i++)

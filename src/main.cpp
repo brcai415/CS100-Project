@@ -49,7 +49,7 @@ vector<string> parser(string passedInput)
     string userInput = passedInput;
 
     typedef boost::tokenizer<boost::char_separator<char>> Tok;
-    boost::char_separator<char> conn("", ";#&&||");
+    boost::char_separator<char> conn("", ";&&||");
     Tok connector(userInput, conn);
 
     for (Tok::iterator tok_iter = connector.begin(); tok_iter != connector.end(); tok_iter++)
