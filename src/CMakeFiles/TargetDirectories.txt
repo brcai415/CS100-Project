@@ -1,0 +1,3 @@
+/home/csmajs/bnguy097/redo/src/CMakeFiles/rebuild_cache.dir
+/home/csmajs/bnguy097/redo/src/CMakeFiles/edit_cache.dir
+/home/csmajs/bnguy097/redo/src/CMakeFiles/rshell.dir
