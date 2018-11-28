@@ -24,6 +24,12 @@ void Semi::execute()
 	return;
     }
 
+    if (semiCommand->getStr() == "test" || semiCommand->getStr() == "test" ||
+    semiCommand->getStr() == " test" || semiCommand->getStr() == " test ")
+    {
+        cout << "FOUND TEST COMMAND" << endl;
+    }
+
     childID = fork();
     if (childID < 0)
     {

@@ -39,11 +39,11 @@ class Shell
         //     return userInput;
         // }
         vector<string> parsing(string); // parsing into own vectors
-	virtual char** get() = 0; // returns value of whatever
-	virtual string getStr() = 0;
-	virtual bool getEsc() = 0;
+    	virtual char** get() = 0; // returns value of whatever
+    	virtual string getStr() = 0;
+    	virtual bool getEsc() = 0;
         virtual void execute() = 0;
-	virtual void print() = 0; //testing object inputs
+    	virtual void print() = 0; //testing object inputs
 };
 
 #endif

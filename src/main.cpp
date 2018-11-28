@@ -7,9 +7,9 @@
 #include "and.h"
 #include "or.h"
 #include "shell.h"
-#include "connector.h"
 #include "executor.h"
 #include "end.h"
+#include "test.h"
 #include <boost/algorithm/string.hpp>
 #include <boost/tokenizer.hpp>
 #include <boost/token_iterator.hpp>
@@ -45,7 +45,7 @@ string userPrompt()
 vector<string> parser(string passedInput)
 {
     vector<string> parsedVector;
- 
+
     string userInput = passedInput;
 
     typedef boost::tokenizer<boost::char_separator<char>> Tok;
@@ -109,7 +109,7 @@ vector<string> parser(string passedInput)
 
 void checkConnectors(vector<string> passedVector, Executor* comp)
 {
-    vector<string> parsedVector = passedVector;  
+    vector<string> parsedVector = passedVector;
 
     string semiConnector = ";";
     string andConnector = "&&";
@@ -124,14 +124,9 @@ void checkConnectors(vector<string> passedVector, Executor* comp)
             Command* child = new Command(parsedVector[i-1]);
 
             Semi* tree = new Semi(child);
-	    //tree->convert();
-	    //cout << "EXECUTING *SEMICOLON* HERE\n ----------------------------------\n";
-	    //tree->execute();
-	    //cout << "------------------------------\n EXECUTION ENDED\n"; 
-	    comp->add(tree);
+	        comp->add(tree);
 
             /*Add tree to vector*/
-
 
         }
 
@@ -142,11 +137,7 @@ void checkConnectors(vector<string> passedVector, Executor* comp)
 
             Command* rightChild = new Command(parsedVector[i+1]);
             And* tree = new And(leftChild, rightChild);
-	    //tree->convert();
-	    //cout << "EXECUTING *AND* HERE\n --------------------------------------\n";
-	    //tree->execute();
-	    //cout << "-----------------------------------\n EXECUTION ENDED\n";
-	    comp->add(tree);
+	        comp->add(tree);
             /*Add tree to vector*/
         }
 
@@ -156,11 +147,7 @@ void checkConnectors(vector<string> passedVector, Executor* comp)
             Command* leftChild = new Command(parsedVector[i-1]);
             Command* rightChild = new Command(parsedVector[i+1]);
             Or* tree = new Or(leftChild, rightChild);
-	    //tree->convert();
-	    //cout << "EXECUTING *OR* HERE\n -------------------------------\n";
-	    //tree->execute();
-	    //cout << "-------------------------------\n EXECUTION ENDED\n";
-	    comp->add(tree);
+	        comp->add(tree);
 
             /*Add tree to vector*/
         }
@@ -172,18 +159,18 @@ void checkConnectors(vector<string> passedVector, Executor* comp)
             cout << "Found command" << endl;
             string toPass = parsedVector[i];
             Command* command = new Command(toPass);
-	    End* tree = new End(command);
-	    comp->add(tree);
+	        End* tree = new End(command);
+	        comp->add(tree);
         }
-	else if (parsedVector.size() == 1)
-	{
-	    Command* command = new Command(parsedVector[i]);
-	    End* tree = new End(command);
-	    comp->add(tree);
-	}
+
+        else if (parsedVector.size() == 1)
+    	{
+    	    Command* command = new Command(parsedVector[i]);
+    	    End* tree = new End(command);
+    	    comp->add(tree);
+    	}
     }
 };
-
 
 void print(vector<string> passedVector)
 {
@@ -203,9 +190,9 @@ void print(vector<string> passedVector)
 int main()
 {
     string userInput;
-    vector<string> parsedVector; 
+    vector<string> parsedVector;
     Executor* composite;
-    do { 
+    do {
         composite = new Executor();
 
         userInput = userPrompt(); //Input line
@@ -215,7 +202,7 @@ int main()
         composite->execute();
     }
     while (!composite->getEsc());
-    
-    cout << "Exiting...\n"; 
+
+    cout << "Exiting...\n";
     return 0;
 };

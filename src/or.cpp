@@ -23,6 +23,14 @@ void Or::execute()
 	return;
     }
 
+    if (orLeft->getStr() == "test " || orLeft->getStr() == "test" || orLeft->getStr() == " test" ||
+	orLeft->getStr() == " test ")
+    {
+        cout << "FOUND TEST COMMAND" << endl;
+    }
+
+
+
     childID = fork();
     if (childID < 0)
     {
@@ -47,6 +55,14 @@ void Or::execute()
 	return;
     }
 
+    if ((orRight->getStr() == "test" || orRight->getStr() == "test " || orRight->getStr() == " test" ||
+    orRight->getStr() == " test ") && fail == -1)
+    {
+        cout << "FOUND TEST COMMAND" << endl;
+    }
+
+
+
     if (fail == -1)
     {
 	childID = fork();
@@ -61,7 +77,7 @@ void Or::execute()
 	    if (fail < 0)
 		perror("Child execution failed");
 	}
-	
+
 	parentID = wait(&status);
 	if (parentID < 0)
 	    perror("Abnormal exit of program");

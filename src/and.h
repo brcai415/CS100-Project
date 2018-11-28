@@ -14,8 +14,8 @@ class And: public Shell
     private:
         Shell* andLeft;
         Shell* andRight;
-	char** argLeft;
-	char** argRight;
+	    char** argLeft;
+	    char** argRight;
 
     public:
         And(Shell* leftChild, Shell* rightChild)

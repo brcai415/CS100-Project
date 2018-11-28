@@ -7,7 +7,7 @@ using namespace std;
 void And::convert()
 {
     argLeft = andLeft->get();
-    argRight = andRight->get(); 
+    argRight = andRight->get();
 };
 
 
@@ -22,6 +22,13 @@ void And::execute()
 	esc = true;
         return;
     }
+
+    if (checkL== "test" || checkL == "test " || checkL == " test" || checkL == " test ")
+    {
+        cout << "FOUND TEST COMMAND" << endl;
+
+    }
+
     //And execution logic
     this->convert();
 
@@ -44,11 +51,16 @@ void And::execute()
     parentID = wait(&status);
     if (status < 0)
         perror("Abnormal exit of program");
-    
+
     if (fail != -1 && (checkR == "exit " || checkR == "exit" || checkR == " exit" || checkR == " exit "))
     {
 	esc = true;
 	return;
+    }
+
+    if (fail != -1 && (checkR == "test" || checkR == "test" || checkR == " test" || checkR == " test "))
+    {
+        cout << "FOUND TEST COMMAND" << endl;
     }
 
     if (fail != -1)
@@ -65,7 +77,7 @@ void And::execute()
 	    if (fail < 0)
 		perror("Child executino failed");
         }
-	
+
 	parentID = wait(&status);
 	if (parentID < 0)
 	    perror("Abnormal exit of program");

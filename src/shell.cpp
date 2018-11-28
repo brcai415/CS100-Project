@@ -38,6 +38,7 @@ vector<string> Shell::parsing(string toParse)
 {
     cout << "THE STRING: " << toParse << endl;
     vector<string> parsed;
+    
     typedef boost::tokenizer< boost::char_separator<char> > Tok;
     boost::char_separator<char> conn(" ","#");
     Tok connector(toParse, conn);
@@ -54,4 +55,4 @@ vector<string> Shell::parsing(string toParse)
 	for(int i=0; i<parsed.size(); i++)
 	cout << "vector: " << parsed[i] << endl;
     return parsed;
-};  
+};

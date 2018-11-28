@@ -19,6 +19,5 @@ ADD_EXECUTABLE(rshell
     or.cpp
     semi.cpp
     end.cpp
+    test.cpp
 )
-
-

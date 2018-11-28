@@ -6,7 +6,7 @@ using namespace std;
 void End::convert()
 {
     arg = command->get();
-}; 
+};
 
 void End::execute()
 {
@@ -22,6 +22,11 @@ void End::execute()
 	return;
     }
 
+    if (command->getStr() == "test" || command->getStr() == "test " || command->getStr() == " test" || command->getStr() == " test "  )
+    {
+        cout << "FOUND TEST COMMAND" << endl;
+    }
+
     childID = fork();
     if (childID < 0)
     {
@@ -34,7 +39,7 @@ void End::execute()
         if (fail < 0)
 	    perror("Child execution failed");
     }
-    
+
     parentID = wait(&status);
     if (status < 0)
 	perror("Abnormal exit of program");
