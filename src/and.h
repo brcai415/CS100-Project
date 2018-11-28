@@ -6,7 +6,6 @@
 #include <string>
 #include <vector>
 #include "shell.h"
-#include "parser.h"
 
 using namespace std;
 
@@ -35,6 +34,11 @@ class And: public Shell
 	void convert(); //Convert to char**
         void execute();
 	char** get() {};
+	string getStr() {};
+	bool getEsc()
+	{
+	    return esc;
+	}
 
 };
 

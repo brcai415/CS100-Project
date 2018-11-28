@@ -20,7 +20,11 @@ class End : public Shell
 	void convert();
 	void execute();
 	char** get() {};
-
+	bool getEsc()
+	{
+	    return esc;
+	}
+	string getStr() {};
 };
 
 #endif

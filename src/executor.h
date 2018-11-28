@@ -10,8 +10,9 @@ class Executor : public Shell
 {
     private:
         vector<Shell*> toExecute;
+	bool ex; //exit
     public:
-        Executor() {};
+        Executor() { ex = false; };
         void add(Shell* leaf)
         {
             toExecute.push_back(leaf);
@@ -24,14 +25,23 @@ class Executor : public Shell
 		toExecute[i]->print();
 	    }
         }
+	string getStr() {};
 	char** get() {};
 	void execute()
 	{
 	    for(int i=0; i<toExecute.size(); i++)
 	    {
 		toExecute[i]->execute();
+		if (toExecute[i]->getEsc() == true)
+		{
+		    ex = true;
+		    return;
+		}
 	    }
 	}
+	bool getEsc() {
+	    return ex;
+	};
 
 };
 

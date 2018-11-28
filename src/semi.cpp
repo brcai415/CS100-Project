@@ -17,6 +17,13 @@ void Semi::execute()
     int status, fail;
     pid_t childID, parentID;
 
+    if (semiCommand->getStr() == "exit " || semiCommand->getStr() == "exit" ||
+	semiCommand->getStr() == " exit" || semiCommand->getStr() == " exit ")
+    {
+	esc = true;
+	return;
+    }
+
     childID = fork();
     if (childID < 0)
     {

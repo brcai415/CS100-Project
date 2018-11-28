@@ -25,6 +25,8 @@ class Shell
         string userInput;
         char* argLeft[50]; //Let left be used for semi colon also
         char* argRight[50]; // Right argument
+	bool esc; // checj for escape
+	bool comment; // check for comment tag
 
     public:
         /*Constructor*/
@@ -38,6 +40,8 @@ class Shell
         // }
         vector<string> parsing(string); // parsing into own vectors
 	virtual char** get() = 0; // returns value of whatever
+	virtual string getStr() = 0;
+	virtual bool getEsc() = 0;
         virtual void execute() = 0;
 	virtual void print() = 0; //testing object inputs
 };

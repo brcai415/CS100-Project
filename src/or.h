@@ -31,7 +31,12 @@ class Or: public Shell
             cout << "Right Child = ";
 	    orRight->print();
         }
+	string getStr() {};
 	char** get() {};
+	bool getEsc()
+	{
+	    return esc;
+	}
 	void convert();
         void execute();
 };

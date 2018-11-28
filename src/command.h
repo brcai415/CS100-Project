@@ -16,6 +16,8 @@ class Command: public Shell
     public:
         Command(string c)
         {
+	    esc = false;
+	    comment = false;
 	    command = c;
         }
 	void print()
@@ -24,18 +26,24 @@ class Command: public Shell
 	}
         char** get(){
 	    parsed = this->parsing(command);
+	    
 	    arg = new char *[parsed.size()+1];
-	    for(int i=0; i<parsed.size(); i++)
+
+	    for (int i=0; i<parsed.size(); i++)
 	    {
-		if (parsed[i] == "exit")  //quick exit program. probably not the way to do it. :eaves an endline
-		    arg[i] = NULL;
-		else
-	            arg[i] = const_cast <char*> ((parsed[i]).c_str());
+		
+	        arg[i] = const_cast <char*> ((parsed[i]).c_str());
 	    }
+
 	    arg[parsed.size()] = NULL;
 	    return arg;
 	}
-        void execute() { };
+	string getStr()
+	{
+	    return this->command;
+	}
+        void execute() {};
+	bool getEsc() {};
 };
 
 #endif

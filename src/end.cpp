@@ -15,6 +15,13 @@ void End::execute()
     int fail, status;
     pid_t childID, parentID;
 
+    if (command->getStr() == "exit" || command->getStr() == "exit " ||
+	command->getStr() == " exit" || command->getStr() == " exit ")
+    {
+	esc = true;
+	return;
+    }
+
     childID = fork();
     if (childID < 0)
     {

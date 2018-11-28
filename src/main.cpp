@@ -204,13 +204,18 @@ int main()
 {
     string userInput;
     vector<string> parsedVector; 
+    Executor* composite;
+    do { 
+        composite = new Executor();
 
-    Executor* composite = new Executor();
-
-    userInput = userPrompt(); //Input line
-    parsedVector = parser(userInput); //Parse line
-    checkConnectors(parsedVector, composite);
-    //composite->print();
-    composite->execute();
+        userInput = userPrompt(); //Input line
+        parsedVector = parser(userInput); //Parse line
+        checkConnectors(parsedVector, composite);
+        //composite->print();
+        composite->execute();
+    }
+    while (!composite->getEsc());
+    
+    cout << "Exiting...\n"; 
     return 0;
 };

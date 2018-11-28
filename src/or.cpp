@@ -16,6 +16,13 @@ void Or::execute()
     int status, fail;
     pid_t childID, parentID;
 
+    if (orLeft->getStr() == "exit " || orLeft->getStr() == "exit" || orLeft->getStr() == " exit" ||
+	orLeft->getStr() == " exit ")
+    {
+	esc = true;
+	return;
+    }
+
     childID = fork();
     if (childID < 0)
     {
@@ -32,6 +39,14 @@ void Or::execute()
     parentID = wait(&status);
     if (status < 0)
 	perror("Abnormal exit of program");
+
+    if ((orRight->getStr() == "exit " || orRight->getStr() == "exit" || orRight->getStr() == " exit" ||
+	orRight->getStr() == " exit ") && fail == -1)
+    {
+	esc = true;
+	return;
+    }
+
     if (fail == -1)
     {
 	childID = fork();

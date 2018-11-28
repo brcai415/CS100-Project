@@ -25,8 +25,12 @@ class Semi: public Shell
         {
 	    cout << "Semi Command: " << semiCommand << endl;
         };
-	
+	string getStr() {};
 	char** get() {};
+	bool getEsc()
+	{
+	    return esc;
+	}
 	void convert();
         void execute();
 };

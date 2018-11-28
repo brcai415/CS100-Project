@@ -4,12 +4,24 @@
 
 using namespace std;
 
-void And::convert(){
+void And::convert()
+{
     argLeft = andLeft->get();
     argRight = andRight->get(); 
 };
 
-void And::execute(){
+
+void And::execute()
+{
+
+    string checkL = andLeft->getStr();
+    string checkR = andRight->getStr();
+
+    if (checkL == "exit " || checkL == "exit" || checkL == " exit" || checkL == " exit ")
+    {
+	esc = true;
+        return;
+    }
     //And execution logic
     this->convert();
 
@@ -32,6 +44,13 @@ void And::execute(){
     parentID = wait(&status);
     if (status < 0)
         perror("Abnormal exit of program");
+    
+    if (fail != -1 && (checkR == "exit " || checkR == "exit" || checkR == " exit" || checkR == " exit "))
+    {
+	esc = true;
+	return;
+    }
+
     if (fail != -1)
     {
         childID = fork();

@@ -48,5 +48,7 @@ vector<string> Shell::parsing(string toParse)
 	if(*tok_iter != " ")
 	    parsed.push_back(*tok_iter);
     }
+	for(int i=0; i<parsed.size(); i++)
+	cout << "vector: " << parsed[i] << endl;
     return parsed;
 };  
