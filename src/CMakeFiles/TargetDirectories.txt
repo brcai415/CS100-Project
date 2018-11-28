@@ -1,3 +1,0 @@
-/mnt/c/Users/incor/github/rewrite/src/CMakeFiles/rebuild_cache.dir
-/mnt/c/Users/incor/github/rewrite/src/CMakeFiles/rshell.dir
-/mnt/c/Users/incor/github/rewrite/src/CMakeFiles/edit_cache.dir
