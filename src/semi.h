@@ -18,6 +18,7 @@ class Semi: public Shell
     public:
         Semi(Shell* com)
         {
+	    fail = 0;
             semiCommand = com;
         };
 
@@ -30,6 +31,14 @@ class Semi: public Shell
 	bool getEsc()
 	{
 	    return esc;
+	}
+	int getFail()
+	{
+	    return fail;
+	}
+	void setFail(int f)
+	{
+	    fail = f;
 	}
 	void convert();
         void execute();

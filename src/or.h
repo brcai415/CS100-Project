@@ -20,6 +20,7 @@ class Or: public Shell
     public:
         Or(Shell* leftChild, Shell* rightChild)
         {
+	    fail = 0;
             orLeft = leftChild;
             orRight = rightChild;
         }
@@ -36,6 +37,14 @@ class Or: public Shell
 	bool getEsc()
 	{
 	    return esc;
+	}
+	int getFail()
+	{
+	    return fail;
+	}
+	void setFail(int f)
+	{
+	    fail = f;
 	}
 	void convert();
         void execute();

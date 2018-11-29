@@ -13,11 +13,13 @@ void Or::convert()
 void Or::execute()
 {
     //Or execution logic
-    int status, fail;
+    int status;
     pid_t childID, parentID;
 
-    if (orLeft->getStr() == "exit " || orLeft->getStr() == "exit" || orLeft->getStr() == " exit" ||
-	orLeft->getStr() == " exit ")
+    this->convert(); 
+
+    if ((orLeft->getStr() == "exit " || orLeft->getStr() == "exit" || orLeft->getStr() == " exit" ||
+	orLeft->getStr() == " exit "))
     {
 	esc = true;
 	return;
@@ -31,22 +33,27 @@ void Or::execute()
 
 
 
-    childID = fork();
-    if (childID < 0)
-    {
-        perror("Forking error");
-	exit(EXIT_FAILURE);
-    }
-    if (childID == 0)
-    {
-	fail = execvp(*argLeft, argLeft);
-	if (fail < 0)
-	    perror("Child execution failed");
+    if (fail == 0)
+    { 
+        childID = fork();
+        if (childID < 0)
+        {
+            perror("Forking error");
+	    exit(EXIT_FAILURE);
+        }
+        if (childID == 0)
+        {
+	    fail = execvp(*argLeft, argLeft);
+	    if (fail < 0)
+	        perror("Child execution failed");
+        }
+
+        parentID = wait(&status);
+        if (status < 0)
+	    perror("Abnormal exit of program");
     }
 
-    parentID = wait(&status);
-    if (status < 0)
-	perror("Abnormal exit of program");
+    
 
     if ((orRight->getStr() == "exit " || orRight->getStr() == "exit" || orRight->getStr() == " exit" ||
 	orRight->getStr() == " exit ") && fail == -1)
@@ -82,4 +89,7 @@ void Or::execute()
 	if (parentID < 0)
 	    perror("Abnormal exit of program");
     }
+
+    if (fail != -1)
+        fail = 1;
 };

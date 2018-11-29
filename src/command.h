@@ -15,14 +15,15 @@ class Command: public Shell
         string command;
     	char** arg;
     	vector<string> parsed;
-
+	
     protected:
         bool testResult;
     public:
         Command(string c)
         {
-    	    esc = false;
-    	    comment = false;
+    	    esc = false; // exit command
+    	    comment = false; // # connector
+	    fail =  0;  // to prevent repeats of && and ||
     	    command = c;
         }
 	void print()
@@ -39,7 +40,7 @@ class Command: public Shell
 		if (parsed[i] == "#")
 		    arg[i] = NULL;
 
-        if (parsed[i] == "test")
+        else if (parsed[i] == "test")
         {
             arg[i] = NULL;
             if((i + 1) < parsed.size() && (i + 2) < parsed.size())
@@ -68,7 +69,9 @@ class Command: public Shell
 	    return this->command;
 	}
     void execute() {};
-	bool getEsc() {};
+    bool getEsc() {};
+    int getFail() {};
+    void setFail(int) {};
     bool testCommand(string passedFlag, string passedPath)
     {
         struct stat sb;

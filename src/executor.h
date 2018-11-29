@@ -28,17 +28,21 @@ class Executor : public Shell
         }
     	string getStr() {};
     	char** get() {};
-
+	int getFail() {};
+	void setFail(int) {};
         void execute()
     	{
     	    for(int i=0; i<toExecute.size(); i++)
     	    {
+		if (i>0)
+		    toExecute[i]->setFail(toExecute[i-1]->getFail());
                 toExecute[i]->execute();
-        		if (toExecute[i]->getEsc() == true)
-        		{
-        		    ex = true;
-        		    return;
-        		}
+
+        	if (toExecute[i]->getEsc() == true)
+        	{
+		    ex = true;
+		    return;
+        	}
     	    }
     	}
     	bool getEsc()

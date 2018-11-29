@@ -14,6 +14,7 @@ class End : public Shell
     public:
         End(Shell* c)
 	{
+	    fail = 0;
 	    command = c;
 	};
 	void print() {};
@@ -23,6 +24,14 @@ class End : public Shell
 	bool getEsc()
 	{
 	    return esc;
+	}
+	int getFail()
+	{
+	    return fail;
+	}
+	void setFail(int f)
+	{
+	    fail = f;
 	}
 	string getStr() {};
 };

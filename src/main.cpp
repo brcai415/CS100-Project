@@ -9,7 +9,7 @@
 #include "shell.h"
 #include "executor.h"
 #include "end.h"
-#include "test.h"
+
 #include <boost/algorithm/string.hpp>
 #include <boost/tokenizer.hpp>
 #include <boost/token_iterator.hpp>
@@ -192,6 +192,7 @@ int main()
     string userInput;
     vector<string> parsedVector;
     Executor* composite;
+
     do {
         composite = new Executor();
 

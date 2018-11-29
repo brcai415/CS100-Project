@@ -12,8 +12,9 @@ void End::execute()
 {
     this->convert();
 
-    int fail, status;
+    int status;
     pid_t childID, parentID;
+
 
     if (command->getStr() == "exit" || command->getStr() == "exit " ||
 	command->getStr() == " exit" || command->getStr() == " exit ")
@@ -22,7 +23,8 @@ void End::execute()
 	return;
     }
 
-    if (command->getStr() == "test" || command->getStr() == "test " || command->getStr() == " test" || command->getStr() == " test "  )
+    if (command->getStr() == "test" || command->getStr() == "test " || 
+	command->getStr() == " test" || command->getStr() == " test "  )
     {
         cout << "FOUND TEST COMMAND" << endl;
     }
@@ -43,4 +45,6 @@ void End::execute()
     parentID = wait(&status);
     if (status < 0)
 	perror("Abnormal exit of program");
+
+    fail = 0;
 };

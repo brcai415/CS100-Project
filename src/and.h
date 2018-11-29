@@ -14,12 +14,13 @@ class And: public Shell
     private:
         Shell* andLeft;
         Shell* andRight;
-	    char** argLeft;
-	    char** argRight;
+	char** argLeft;
+	char** argRight;
 
     public:
         And(Shell* leftChild, Shell* rightChild)
         {
+	    fail = 0;
             andLeft = leftChild;
             andRight = rightChild;
         }
@@ -38,6 +39,14 @@ class And: public Shell
 	bool getEsc()
 	{
 	    return esc;
+	}
+	int getFail()
+	{
+	    return fail;
+	}
+	void setFail(int f)
+	{
+	    fail = f;
 	}
 
 };

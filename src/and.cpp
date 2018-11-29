@@ -32,25 +32,28 @@ void And::execute()
     //And execution logic
     this->convert();
 
-    int status, fail;
+    int status;
     pid_t childID, parentID;
 
-    childID = fork(); // for child and parent
-    if (childID < 0)
+    if (fail == 0)
     {
-        perror("Forking error");
-        exit(EXIT_FAILURE);
-    }
-    if (childID == 0)
-    {
-        fail = execvp(*argLeft, argLeft);
-        if (fail < 0)
-            perror("Child execution failed"); //if child failed to execute
-    }
+        childID = fork(); // for child and parent
+        if (childID < 0)
+        {
+            perror("Forking error");
+            exit(EXIT_FAILURE);
+        }
+        if (childID == 0)
+        {
+            fail = execvp(*argLeft, argLeft);
+            if (fail < 0)
+                perror("Child execution failed"); //if child failed to execute
+        }
 
-    parentID = wait(&status);
-    if (status < 0)
-        perror("Abnormal exit of program");
+        parentID = wait(&status);
+        if (status < 0)
+            perror("Abnormal exit of program");
+    }
 
     if (fail != -1 && (checkR == "exit " || checkR == "exit" || checkR == " exit" || checkR == " exit "))
     {
@@ -82,4 +85,7 @@ void And::execute()
 	if (parentID < 0)
 	    perror("Abnormal exit of program");
     }
+
+    if (fail != -1)
+        fail = 1;
 };
